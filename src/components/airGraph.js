@@ -47,7 +47,7 @@ export const AirGraph = () => {
             console.log(dateData)
             console.log(tempData)
 
-        })
+        }).catch((e) => {console.log(e)})
     }, [])
 
     let labels = dateData;
