@@ -1,10 +1,23 @@
-import {ServerGraph} from "../../components/serverGraph";
+import { WaterGraph} from "../../components/waterGraph";
+import {AirGraph} from "../../components/airGraph";
+import {useState} from "react";
 
 export const HomePage = () => {
+    const [refresh, setRefresh] = useState(0)
+
+
+    setTimeout(() => {
+        setRefresh(refresh+1)
+    }, 1000)
 
     return (
         <div>
-            <ServerGraph/>
+            <div>
+                <WaterGraph/>
+            </div>
+            <div>
+                <AirGraph/>
+            </div>
         </div>
     )
 }
