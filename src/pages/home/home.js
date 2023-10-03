@@ -1,4 +1,4 @@
-import { WaterGraph} from "../../components/waterGraph";
+import {WaterGraph} from "../../components/waterGraph";
 import {AirGraph} from "../../components/airGraph";
 import {useState} from "react";
 import Calendar from "react-calendar";
@@ -10,19 +10,27 @@ export const HomePage = () => {
 
 
     setTimeout(() => {
-        setRefresh(refresh+1)
+        setRefresh(refresh + 1)
     }, 60000)
 
 
     return (
         <div>
-            <Calendar value={dates} selectRange={true} onChange={async (r) => setDates(r)}  />
-            <div style={{width: "60%"}}>
-                <WaterGraph refresh={refresh} dates={dates}/>
-            </div>
-            <div style={{width: "60%"}}>
-                <AirGraph refresh={refresh} dates={dates}/>
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                <div style={{width: "60%"}}>
+                    <div style={CardStyle}>
+                        <WaterGraph refresh={refresh} dates={dates}/>
+                    </div>
+                    <div style={CardStyle}>
+                        <AirGraph refresh={refresh} dates={dates}/>
+                    </div>
+                </div>
+                <div style={{justifyContent: "center", display: "flex", flexDirection: "column"}}>
+                    <Calendar value={dates} selectRange={true} onChange={async (r) => setDates(r)}/>
+                </div>
             </div>
         </div>
     )
 }
+
+export const CardStyle = {padding: 20, borderRadius: 20, backgroundColor: '#eaeaea', marginTop: 20}
