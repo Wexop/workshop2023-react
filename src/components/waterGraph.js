@@ -23,7 +23,7 @@ ChartJS.register(
     Legend
 );
 
-export const WaterGraph = () => {
+export const WaterGraph = (props:{refresh: number}) => {
 
     const [tempData, setTempData] = useState([])
     const [dateData, setDateData] = useState([])
@@ -49,7 +49,7 @@ export const WaterGraph = () => {
 
         })
             .catch((e) => {console.log(e)})
-    }, [])
+    }, [props.refresh])
 
     let labels = dateData;
     let dataTab = tempData

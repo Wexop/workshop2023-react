@@ -12,11 +12,11 @@ export const HomePage = () => {
 
     return (
         <div>
-            <div>
-                <WaterGraph/>
+            <div style={{width: "60%"}}>
+                <WaterGraph refresh={refresh}/>
             </div>
-            <div>
-                <AirGraph/>
+            <div style={{width: "60%"}}>
+                <AirGraph refresh={refresh}/>
             </div>
         </div>
     )

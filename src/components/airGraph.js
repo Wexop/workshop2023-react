@@ -23,7 +23,7 @@ ChartJS.register(
     Legend
 );
 
-export const AirGraph = () => {
+export const AirGraph = (props:{refresh: number}) => {
 
     const [tempData, setTempData] = useState([])
     const [dateData, setDateData] = useState([])
@@ -48,7 +48,7 @@ export const AirGraph = () => {
             console.log(tempData)
 
         }).catch((e) => {console.log(e)})
-    }, [])
+    }, [props.refresh])
 
     let labels = dateData;
     let dataTab = tempData
