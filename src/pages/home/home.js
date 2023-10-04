@@ -43,7 +43,8 @@ export const HomePage = () => {
                     width: "90%",
                     justifyContent: "space-evenly",
                     backgroundColor: "#EAEAEAFF",
-                    borderRadius: 20
+                    borderRadius: 20,
+                    flexWrap: "wrap"
                 }}>
                     <div style={CardStyle}>
                         <ServerTempGraph refresh={refresh} dates={dates}/>

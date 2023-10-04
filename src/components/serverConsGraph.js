@@ -91,8 +91,8 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
                 fill: true,
                 label: 'temperatures GPU',
                 data: dataGpuTab,
-                borderColor: 'rgb(247,255,26)',
-                backgroundColor: 'rgba(199,189,1,0.5)',
+                borderColor: 'rgb(14,137,0)',
+                backgroundColor: 'rgba(0,104,23,0.5)',
             }
         ],
     };
