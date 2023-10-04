@@ -24,7 +24,7 @@ ChartJS.register(
     Legend
 );
 
-export const AirGraph = (props:{refresh: number, dates: Date[]}) => {
+export const AirGraph = (props: { refresh: number, dates: Date[] }) => {
 
     const [tempData, setTempData] = useState([])
     const [dateData, setDateData] = useState([])
@@ -37,7 +37,7 @@ export const AirGraph = (props:{refresh: number, dates: Date[]}) => {
     const endDateString = `${endDate.getFullYear()}-${endDate.getDate()}-${endDate.getMonth() + 1}`
 
     useEffect(() => {
-        fetch(`http://localhost:5000/get-air?firstDate=${firstDateString}&endDate=${endDateString}`, {mode: "cors"}).then( async r => {
+        fetch(`http://localhost:5000/get-air?firstDate=${firstDateString}&endDate=${endDateString}`, {mode: "cors"}).then(async r => {
             const response = await r.json()
 
             const tempTab = []
@@ -63,7 +63,9 @@ export const AirGraph = (props:{refresh: number, dates: Date[]}) => {
             console.log(dateData)
             console.log(tempData)
 
-        }).catch((e) => {console.log(e)})
+        }).catch((e) => {
+            console.log(e)
+        })
     }, [props.refresh, props.dates])
 
     let labels = dateData;

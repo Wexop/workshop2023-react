@@ -24,7 +24,7 @@ ChartJS.register(
     Legend
 );
 
-export const WaterGraph = (props:{refresh: number, dates: Date[]}) => {
+export const WaterGraph = (props: { refresh: number, dates: Date[] }) => {
 
     const [tempData, setTempData] = useState([])
     const [dateData, setDateData] = useState([])
@@ -37,7 +37,7 @@ export const WaterGraph = (props:{refresh: number, dates: Date[]}) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/get-water?firstDate=${firstDateString}&endDate=${endDateString}`, {mode: "cors"}).then( async r => {
+        fetch(`http://localhost:5000/get-water?firstDate=${firstDateString}&endDate=${endDateString}`, {mode: "cors"}).then(async r => {
             const response = await r.json()
 
             const tempTab = []
@@ -63,7 +63,9 @@ export const WaterGraph = (props:{refresh: number, dates: Date[]}) => {
             console.log(tempData)
 
         })
-            .catch((e) => {console.log(e)})
+            .catch((e) => {
+                console.log(e)
+            })
     }, [props.refresh, props.dates])
 
     let labels = dateData;
@@ -73,10 +75,6 @@ export const WaterGraph = (props:{refresh: number, dates: Date[]}) => {
         labels = dateData;
         dataTab = tempData
     }, [tempData, dateData])
-
-
-
-
 
 
     const data = {
@@ -97,11 +95,11 @@ export const WaterGraph = (props:{refresh: number, dates: Date[]}) => {
 
 
     return (
-       <div>
-           <h2 style={{textAlign: "center"}}>Température de l'eau</h2>
-           <Line style={{marginBottom: 30}} options={options} data={data}/>
-           <p>Moyenne des températures : {avg} </p>
-       </div>
+        <div>
+            <h2 style={{textAlign: "center"}}>Température de l'eau</h2>
+            <Line style={{marginBottom: 30}} options={options} data={data}/>
+            <p>Moyenne des températures : {avg} </p>
+        </div>
 
     )
 
