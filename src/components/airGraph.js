@@ -98,7 +98,7 @@ export const AirGraph = (props: { refresh: number, dates: Date[] }) => {
             <h2 style={{textAlign: "center"}}>Température de l'air en °C</h2>
 
             <Line style={{marginBottom: 30}} options={options} data={data}/>
-            <p>Températures moyennes : {avg} </p>
+            <p>Température moyenne : {avg} </p>
         </div>
 
     )
