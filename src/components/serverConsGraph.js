@@ -11,7 +11,7 @@ import {
     Tooltip
 } from 'chart.js';
 import React, {useEffect, useState} from "react";
-import {dateToHour} from "../functions";
+import {dateToHour, decimalToWatt} from "../functions";
 
 ChartJS.register(
     CategoryScale,
@@ -30,6 +30,9 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
     const [consGpuData, setConsGpuData] = useState([])
     const [dateData, setDateData] = useState([])
 
+    const [avgCpu, setAvgCpu] = useState(0)
+    const [avgGpu, setAvgGpu] = useState(0)
+
     const firstDate = props.dates[0]
     const firstDateString = `${firstDate.getFullYear()}-${firstDate.getDate()}-${firstDate.getMonth() + 1}`
     const endDate = props.dates[1]
@@ -44,6 +47,9 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
             const consGpuTab = []
             const tabData = []
 
+            let avgCpuNb = 0
+            let avgGpuNb = 0
+
             response.forEach((o) => {
 
                 const date = new Date(o.date)
@@ -51,12 +57,18 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
                 consCpuTab.push(o.cons_cpu_total)
                 consGpuTab.push(o.cons_gpu)
                 tabData.push(dateToHour(date))
+
+                avgCpuNb += o.cons_cpu_total
+                avgGpuNb += o.cons_gpu
             })
 
 
             setDateData(tabData)
             setConsCpuData(consCpuTab)
             setConsGpuData(consGpuTab)
+
+            setAvgCpu(decimalToWatt(avgCpuNb / response.length))
+            setAvgGpu(decimalToWatt(avgGpuNb / response.length))
 
             console.log(dateData)
 
@@ -105,6 +117,8 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
         <div>
             <h2 style={{textAlign: "center"}}>Consomation du serveur en W</h2>
             <Line style={{marginBottom: 30}} options={options} data={data}/>
+            <p>Température moyenne du CPU : {avgCpu}</p>
+            <p>Température moyenne du GPU : {avgGpu}</p>
         </div>
 
     )
