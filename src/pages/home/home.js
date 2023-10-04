@@ -4,6 +4,7 @@ import {useState} from "react";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import {ServerTempGraph} from "../../components/serverTempGraph";
+import {ServerConsGraph} from "../../components/serverConsGraph";
 
 export const HomePage = () => {
     const [refresh, setRefresh] = useState(0)
@@ -36,9 +37,20 @@ export const HomePage = () => {
                 <div style={CardStyle}>
                     <AirGraph refresh={refresh} dates={dates}/>
                 </div>
-                <div style={CardStyle}>
-                    <ServerTempGraph refresh={refresh} dates={dates}/>
-
+                <div style={{
+                    display: "flex",
+                    direction: "row",
+                    width: "90%",
+                    justifyContent: "space-evenly",
+                    backgroundColor: "#EAEAEAFF",
+                    borderRadius: 20
+                }}>
+                    <div style={CardStyle}>
+                        <ServerTempGraph refresh={refresh} dates={dates}/>
+                    </div>
+                    <div style={CardStyle}>
+                        <ServerConsGraph refresh={refresh} dates={dates}/>
+                    </div>
                 </div>
                 <div style={{
                     justifyContent: "center",
