@@ -3,5 +3,6 @@ export const decimalToDegree = (number: number) => {
 }
 
 export const dateToHour = (date: Date) => {
-    return `${date.getHours()}:${date.getMinutes()}`
+
+    return `${date.getUTCHours()}:${date.getUTCMinutes()}`
 }
