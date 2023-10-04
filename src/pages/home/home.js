@@ -8,15 +8,22 @@ export const HomePage = () => {
     const [refresh, setRefresh] = useState(0)
     const [dates, setDates] = useState([new Date(), new Date()])
 
+    const [showCalendar, setShowCalendar] = useState(false)
+
 
     setTimeout(() => {
         setRefresh(refresh + 1)
     }, 60000)
 
 
+
+
     return (
         <div>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: 20}}>
+                <a style={{padding: 20, backgroundColor: "#3ac4ff", borderRadius: 15, color: "white"}} onClick={() => setShowCalendar(!showCalendar)}>Calendrier</a>
+            </div>
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
                 <div style={{width: "60%"}}>
                     <div style={CardStyle}>
                         <WaterGraph refresh={refresh} dates={dates}/>
@@ -25,7 +32,7 @@ export const HomePage = () => {
                         <AirGraph refresh={refresh} dates={dates}/>
                     </div>
                 </div>
-                <div style={{justifyContent: "center", display: "flex", flexDirection: "column"}}>
+                <div style={{justifyContent: "center", display: showCalendar ? "flex" : "none", flexDirection: "column", position: "absolute"}}>
                     <Calendar value={dates} selectRange={true} onChange={async (r) => setDates(r)}/>
                 </div>
             </div>
