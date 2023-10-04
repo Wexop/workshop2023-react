@@ -3,6 +3,7 @@ import {AirGraph} from "../../components/airGraph";
 import {useState} from "react";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
+import {ServerTempGraph} from "../../components/serverTempGraph";
 
 export const HomePage = () => {
     const [refresh, setRefresh] = useState(0)
@@ -22,14 +23,22 @@ export const HomePage = () => {
                 <a style={{padding: 20, backgroundColor: "#3ac4ff", borderRadius: 15, color: "white"}}
                    onClick={() => setShowCalendar(!showCalendar)}>Calendrier</a>
             </div>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
-                <div style={{width: "60%"}}>
-                    <div style={CardStyle}>
-                        <WaterGraph refresh={refresh} dates={dates}/>
-                    </div>
-                    <div style={CardStyle}>
-                        <AirGraph refresh={refresh} dates={dates}/>
-                    </div>
+            <div style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "space-evenly",
+                gap: 20
+            }}>
+                <div style={CardStyle}>
+                    <WaterGraph refresh={refresh} dates={dates}/>
+                </div>
+                <div style={CardStyle}>
+                    <AirGraph refresh={refresh} dates={dates}/>
+                </div>
+                <div style={CardStyle}>
+                    <ServerTempGraph refresh={refresh} dates={dates}/>
+
                 </div>
                 <div style={{
                     justifyContent: "center",
@@ -44,4 +53,4 @@ export const HomePage = () => {
     )
 }
 
-export const CardStyle = {padding: 20, borderRadius: 20, backgroundColor: '#eaeaea', marginTop: 20}
+export const CardStyle = {padding: 20, borderRadius: 20, backgroundColor: '#eaeaea', marginTop: 20, width: "40%"}
