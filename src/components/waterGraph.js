@@ -96,9 +96,9 @@ export const WaterGraph = (props: { refresh: number, dates: Date[] }) => {
 
     return (
         <div>
-            <h2 style={{textAlign: "center"}}>Température de l'eau</h2>
+            <h2 style={{textAlign: "center"}}>Température de l'eau en °C</h2>
             <Line style={{marginBottom: 30}} options={options} data={data}/>
-            <p>Moyenne des températures : {avg} </p>
+            <p>Températures moyennes : {avg} </p>
         </div>
 
     )

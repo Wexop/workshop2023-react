@@ -82,14 +82,14 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
         datasets: [
             {
                 fill: true,
-                label: 'temperatures CPU',
+                label: 'CPU',
                 data: dataCpuTab,
                 borderColor: 'rgb(26,106,255)',
                 backgroundColor: 'rgba(1,110,199,0.5)',
             },
             {
                 fill: true,
-                label: 'temperatures GPU',
+                label: 'GPU',
                 data: dataGpuTab,
                 borderColor: 'rgb(14,137,0)',
                 backgroundColor: 'rgba(0,104,23,0.5)',
@@ -103,7 +103,7 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
 
     return (
         <div>
-            <h2 style={{textAlign: "center"}}>Consomation du serveur</h2>
+            <h2 style={{textAlign: "center"}}>Consomation du serveur en W</h2>
             <Line style={{marginBottom: 30}} options={options} data={data}/>
         </div>
 

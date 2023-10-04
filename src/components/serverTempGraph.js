@@ -28,6 +28,7 @@ export const ServerTempGraph = (props: { refresh: number, dates: Date[] }) => {
 
     const [tempCpuData, setTempCpuData] = useState([])
     const [tempGpuData, setTempGpuData] = useState([])
+    const [tempDiskData, setTempDiskData] = useState([])
     const [dateData, setDateData] = useState([])
 
     const firstDate = props.dates[0]
@@ -42,6 +43,7 @@ export const ServerTempGraph = (props: { refresh: number, dates: Date[] }) => {
 
             const tempCpuTab = []
             const tempGpuTab = []
+            const tempDiskTab = []
             const tabData = []
 
             response.forEach((o) => {
@@ -50,6 +52,7 @@ export const ServerTempGraph = (props: { refresh: number, dates: Date[] }) => {
 
                 tempCpuTab.push(o.temp_cpu_avg)
                 tempGpuTab.push(o.temp_gpu)
+                tempDiskTab.push(o.temp_disk)
                 tabData.push(dateToHour(date))
             })
 
@@ -57,6 +60,7 @@ export const ServerTempGraph = (props: { refresh: number, dates: Date[] }) => {
             setDateData(tabData)
             setTempCpuData(tempCpuTab)
             setTempGpuData(tempGpuTab)
+            setTempDiskData(tempDiskTab)
 
             console.log(dateData)
             console.log(tempCpuTab)
@@ -70,12 +74,14 @@ export const ServerTempGraph = (props: { refresh: number, dates: Date[] }) => {
     let labels = dateData;
     let dataCpuTab = tempCpuData
     let dataGpuTab = tempGpuData
+    let dataDiskTab = tempDiskData
 
     useEffect(() => {
         labels = dateData;
         dataCpuTab = tempCpuData
         dataGpuTab = tempGpuData
-    }, [tempCpuData, dateData, tempGpuData])
+        dataDiskTab = tempDiskData
+    }, [tempCpuData, dateData, tempGpuData, tempDiskData])
 
 
     const data = {
@@ -83,17 +89,24 @@ export const ServerTempGraph = (props: { refresh: number, dates: Date[] }) => {
         datasets: [
             {
                 fill: true,
-                label: 'temperatures CPU',
+                label: 'CPU',
                 data: dataCpuTab,
                 borderColor: 'rgb(26,106,255)',
                 backgroundColor: 'rgba(1,110,199,0.5)',
             },
             {
                 fill: true,
-                label: 'temperatures GPU',
+                label: 'GPU',
                 data: dataGpuTab,
                 borderColor: 'rgb(14,137,0)',
                 backgroundColor: 'rgba(0,104,23,0.5)',
+            },
+            {
+                fill: true,
+                label: 'Disques',
+                data: dataDiskTab,
+                borderColor: 'rgb(215,93,0)',
+                backgroundColor: 'rgba(164,104,0,0.5)',
             }
         ],
     };
@@ -104,7 +117,7 @@ export const ServerTempGraph = (props: { refresh: number, dates: Date[] }) => {
 
     return (
         <div>
-            <h2 style={{textAlign: "center"}}>Températures du serveur</h2>
+            <h2 style={{textAlign: "center"}}>Températures du serveur en °C</h2>
             <Line style={{marginBottom: 30}} options={options} data={data}/>
         </div>
 
