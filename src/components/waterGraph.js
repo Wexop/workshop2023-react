@@ -11,7 +11,7 @@ import {
     Tooltip
 } from 'chart.js';
 import React, {useEffect, useState} from "react";
-import {decimalToDegree} from "../functions";
+import {dateToHour, decimalToDegree} from "../functions";
 
 ChartJS.register(
     CategoryScale,
@@ -46,8 +46,11 @@ export const WaterGraph = (props:{refresh: number, dates: Date[]}) => {
             let averageNb = 0
 
             response.forEach((o) => {
+
+                const date = new Date(o.date)
+
                 tempTab.push(o.temp)
-                tabData.push(o.date)
+                tabData.push(dateToHour(date))
                 averageNb += o.temp
             })
 
