@@ -94,7 +94,7 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
         labels = dateData;
         dataCpuTab = consCpuData
         dataGpuTab = consGpuData
-    }, [consCpuData, dateData, consGpuData])
+    }, [consCpuData, dateData, consGpuData, props.refresh])
 
 
     const data = {

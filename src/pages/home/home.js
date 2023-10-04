@@ -15,7 +15,7 @@ export const HomePage = () => {
 
     setTimeout(() => {
         setRefresh(refresh + 1)
-    }, 60000)
+    }, 20000)
 
 
     return (

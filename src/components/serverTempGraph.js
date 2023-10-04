@@ -98,7 +98,7 @@ export const ServerTempGraph = (props: { refresh: number, dates: Date[] }) => {
         dataCpuTab = tempCpuData
         dataGpuTab = tempGpuData
         dataDiskTab = tempDiskData
-    }, [tempCpuData, dateData, tempGpuData, tempDiskData])
+    }, [tempCpuData, dateData, tempGpuData, tempDiskData, props.refresh])
 
 
     const data = {

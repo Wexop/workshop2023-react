@@ -74,7 +74,7 @@ export const AirGraph = (props: { refresh: number, dates: Date[] }) => {
     useEffect(() => {
         labels = dateData;
         dataTab = tempData
-    }, [tempData, dateData])
+    }, [tempData, dateData, props.refresh])
 
     const data = {
         labels,
