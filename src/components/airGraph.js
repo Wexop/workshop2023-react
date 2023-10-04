@@ -2,16 +2,17 @@ import {Line} from "react-chartjs-2";
 import {
     CategoryScale,
     Chart as ChartJS,
-    Chart,
+    Filler,
     Legend,
     LinearScale,
     LineElement,
     PointElement,
     Title,
-    Filler,
     Tooltip
 } from 'chart.js';
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import {decimalToDegree} from "../functions";
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -27,6 +28,8 @@ export const AirGraph = (props:{refresh: number, dates: Date[]}) => {
 
     const [tempData, setTempData] = useState([])
     const [dateData, setDateData] = useState([])
+    const [avg, setAvg] = useState(0)
+
 
     const firstDate = props.dates[0]
     const firstDateString = `${firstDate.getFullYear()}-${firstDate.getDate()}-${firstDate.getMonth() + 1}`
@@ -40,14 +43,19 @@ export const AirGraph = (props:{refresh: number, dates: Date[]}) => {
             const tempTab = []
             const tabData = []
 
+            let averageNb = 0
+
             response.forEach((o) => {
                 tempTab.push(o.temp)
                 tabData.push(o.date)
+                averageNb += o.temp
             })
 
 
             setDateData(tabData)
             setTempData(tempTab)
+            setAvg(decimalToDegree(averageNb / response.length))
+
 
             console.log(dateData)
             console.log(tempData)
@@ -81,7 +89,12 @@ export const AirGraph = (props:{refresh: number, dates: Date[]}) => {
 
 
     return (
-        <Line options={options} data={data}/>
+        <div>
+            <h2 style={{textAlign: "center"}}>Température de l'air</h2>
+
+            <Line style={{marginBottom: 30}} options={options} data={data}/>
+            <p>Moyenne des températures : {avg} </p>
+        </div>
 
     )
 
