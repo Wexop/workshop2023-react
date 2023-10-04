@@ -75,7 +75,7 @@ export const WaterGraph = (props:{refresh: number, dates: Date[]}) => {
     }, [tempData, dateData])
 
 
-    if(dateData.length === 0 || tempData.length === 0) return <></>
+
 
 
 
