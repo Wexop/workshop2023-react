@@ -32,6 +32,9 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
 
     const [avgCpu, setAvgCpu] = useState(0)
     const [avgGpu, setAvgGpu] = useState(0)
+    const [totalCpu, setTotalCpu] = useState(0)
+    const [totalGpu, setTotalGpu] = useState(0)
+    const [totalServer, setTotalServer] = useState(0)
 
     const firstDate = props.dates[0]
     const firstDateString = `${firstDate.getFullYear()}-${firstDate.getDate()}-${firstDate.getMonth() + 1}`
@@ -69,6 +72,11 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
 
             setAvgCpu(decimalToWatt(avgCpuNb / response.length))
             setAvgGpu(decimalToWatt(avgGpuNb / response.length))
+
+            setTotalCpu(decimalToWatt(avgCpuNb))
+            setTotalGpu(decimalToWatt(avgGpuNb))
+
+            setTotalServer(decimalToWatt(avgCpuNb + avgGpuNb))
 
             console.log(dateData)
 
@@ -117,8 +125,11 @@ export const ServerConsGraph = (props: { refresh: number, dates: Date[] }) => {
         <div>
             <h2 style={{textAlign: "center"}}>Consomation du serveur en W</h2>
             <Line style={{marginBottom: 30}} options={options} data={data}/>
-            <p>Température moyenne du CPU : {avgCpu}</p>
-            <p>Température moyenne du GPU : {avgGpu}</p>
+            <p>Consomation moyenne du CPU : {avgCpu}</p>
+            <p>Consomation moyenne du GPU : {avgGpu}</p>
+            <p>Consomation totale du GPU : {totalCpu}</p>
+            <p>Consomation totale du GPU : {totalGpu}</p>
+            <p>Consomation totale du server : {totalServer}</p>
         </div>
 
     )
