@@ -88,21 +88,21 @@ export const ServerTempGraph = (props: { refresh: number, dates: Date[] }) => {
         labels,
         datasets: [
             {
-                fill: true,
+                fill: false,
                 label: 'CPU',
                 data: dataCpuTab,
                 borderColor: 'rgb(26,106,255)',
                 backgroundColor: 'rgba(1,110,199,0.5)',
             },
             {
-                fill: true,
+                fill: false,
                 label: 'GPU',
                 data: dataGpuTab,
                 borderColor: 'rgb(14,137,0)',
                 backgroundColor: 'rgba(0,104,23,0.5)',
             },
             {
-                fill: true,
+                fill: false,
                 label: 'Disques',
                 data: dataDiskTab,
                 borderColor: 'rgb(215,93,0)',

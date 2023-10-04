@@ -80,7 +80,7 @@ export const AirGraph = (props: { refresh: number, dates: Date[] }) => {
         labels,
         datasets: [
             {
-                fill: true,
+                fill: false,
                 label: 'temperatures air',
                 data: dataTab,
                 borderColor: 'rgb(26,37,255)',

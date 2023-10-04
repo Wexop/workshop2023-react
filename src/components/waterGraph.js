@@ -81,7 +81,7 @@ export const WaterGraph = (props: { refresh: number, dates: Date[] }) => {
         labels,
         datasets: [
             {
-                fill: true,
+                fill: false,
                 label: 'temperatures eau',
                 data: dataTab,
                 borderColor: 'rgb(26,186,255)',
